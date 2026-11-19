@@ -140,7 +140,7 @@ graph TD
 
 ## 📂 6. 项目目录结构 (Project Structure)
 
-```````bash
+```bash
 CrossBorder-Support-Agent/
 ├── app/
 │   ├── adapters/               # 多平台适配器层 (Adapter & Factory Pattern)
