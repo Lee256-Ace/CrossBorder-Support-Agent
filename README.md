@@ -176,7 +176,7 @@ CrossBorder-Support-Agent/
 ### 7.1 启动基础设施
 
 ```bash
-git clone https://github.com<your-username>/CrossBorder-Support-Agent.git
+git clone https://github.com/Lee256-Ace/CrossBorder-Support-Agent.git
 cd CrossBorder-Support-Agent
 
 # 配置环境变量 (填入 LLM API Key 与可选的 Langfuse 监控密钥)
