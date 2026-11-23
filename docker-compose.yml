@@ -1,28 +1,22 @@
 services:
-  mysql:
-    image: mysql:8.0
+  postgres:
+    image: postgres:16-alpine
     environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: crossborder
-      MYSQL_USER: app
-      MYSQL_PASSWORD: app123
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app123
+      POSTGRES_DB: crossborder
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      - pg_data:/var/lib/postgresql/data
 
   chroma:
-    image: chromadb/chroma:latest
+    image: chromadb/chroma:0.5.5
     ports:
       - "8001:8000"
     volumes:
       - chroma_data:/chroma/chroma
 
 volumes:
-  mysql_data:
+  pg_data:
   chroma_data:
