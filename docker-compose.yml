@@ -1,21 +1,30 @@
 services:
   postgres:
-    image: postgres:16-alpine
+    image: m.daocloud.io/docker.io/library/postgres:16-alpine
+    container_name: crossborder-postgres
+    restart: unless-stopped
     environment:
       POSTGRES_USER: app
       POSTGRES_PASSWORD: app123
       POSTGRES_DB: crossborder
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d crossborder"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   chroma:
-    image: chromadb/chroma:0.5.5
+    image: m.daocloud.io/docker.io/chromadb/chroma:1.5.9
+    container_name: crossborder-chroma
+    restart: unless-stopped
     ports:
-      - "8001:8000"
+      - "127.0.0.1:8001:8000"
     volumes:
-      - chroma_data:/chroma/chroma
+      - chroma_data:/data
 
 volumes:
   pg_data:
