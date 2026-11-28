@@ -5,7 +5,7 @@ from app.models.base import Base
 from app.models.order import Order
 
 async def init_and_seed():
-    print("⏳ 正在连接 MySQL 并建表...")
+    print("⏳ 正在连接 PostgreSQL 并建表...")
     async with engine.begin() as conn:
         # 扫描所有继承 Base 的模型并建表
         await conn.run_sync(Base.metadata.create_all)

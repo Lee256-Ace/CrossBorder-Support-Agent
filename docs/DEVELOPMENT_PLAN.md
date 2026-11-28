@@ -37,7 +37,7 @@ graph LR
 - [x] 异步数据库引擎与会话工厂 `get_db`
 - [x] Docker Compose：PostgreSQL 16 + Chroma 1.5.9，数据卷持久化
 - [x] FastAPI 入口与 `/api/health`
-- [ ] 补齐 `.env.example`
+- [x] 补齐 `.env.example`
 - [ ] Docker Compose 增加 Redis 服务
 - [ ] 引入 Alembic 迁移目录，替代 `create_all`
 - [ ] 统一日志（structlog 或 logging JSON 格式）

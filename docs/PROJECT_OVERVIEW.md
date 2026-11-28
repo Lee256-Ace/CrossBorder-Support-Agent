@@ -50,7 +50,7 @@
 - `Order` 数据模型与建表 / 种子数据脚本；
 - 只读订单查询接口 `GET /api/orders/{order_id}`；
 - Docker Compose 编排 PostgreSQL 与 Chroma；
-- LiteLLM/OpenAI 兼容的 LLM 客户端初始化。
+- langchain-openai（OpenAI 兼容接口）的 LLM 客户端，惰性初始化（`get_llm()`）。
 
 尚未实现（规划中）：
 
@@ -115,14 +115,13 @@ curl http://127.0.0.1:8000/api/health
 curl http://127.0.0.1:8000/api/orders/ORD-1001
 ```
 
-环境变量（`.env`，参考 [config.py](../app/core/config.py)）：
+环境变量（`.env`，完整清单见根目录 [.env.example](../.env.example)，字段定义见 [config.py](../app/core/config.py)）：
 
+```bash
+cp .env.example .env   # 然后填入真实值
 ```
-DATABASE_URL=postgresql+asyncpg://app:app123@localhost:5432/crossborder
-LLM_API_KEY=sk-xxx
-LLM_BASE_URL=https://api.openai.com/v1
-LLM_MODEL=gpt-4o-mini
-```
+
+关键项：`DATABASE_URL`（数据库连接）、`LLM_API_KEY`（未配置时服务可启动，但调用 LLM 会抛错）、`SECRET_KEY` / `ADMIN_PASSWORD`（生产环境必须修改）。
 
 ---
 
